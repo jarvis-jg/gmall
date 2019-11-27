@@ -51,7 +51,6 @@
         }
 
         function goto_spu_add() {
-            alert(1);
             var class_1_id = $("#class_1_select").val();
             var class_2_id = $("#class_2_select").val();
             var tm_id = $("#tm_class_select").val();

@@ -1,9 +1,15 @@
 package com.jarvis.gmall.controller;
 
 import com.jarvis.gmall.entity.T_MALL_PRODUCT;
+import com.jarvis.gmall.service.SpuService;
+import com.jarvis.gmall.util.MyFileUploadUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,10 +21,17 @@ import java.util.Map;
 @Controller
 public class SpuController {
 
+    @Autowired
+    SpuService spuService;
 
-    @RequestMapping("spu_add")
-    public String spu_add(T_MALL_PRODUCT product){
+    @RequestMapping("/spu_add")
+    public String spu_add(@RequestParam("files") MultipartFile[] files, T_MALL_PRODUCT product, int fm_id){
 
+        // 1、上传文件
+        List<String> image_list = MyFileUploadUtil.update_files(files);
+
+        //2、写入数据库
+        spuService.save_spu(image_list,product,fm_id);
 
         return "redirect:/goto_spu_add.do" +
                 "?flbh1=" + product.getFlbh1() +
