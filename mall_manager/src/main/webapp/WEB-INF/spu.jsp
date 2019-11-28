@@ -59,7 +59,8 @@
     </script>
 </head>
 <body>
-    spu商品信息管理<br>
+    spu商品信息管理
+    <hr>
     一级分类：<select id="class_1_select" onchange="get_class_2(this.value)"><option value="" selected="selected">---请选择---</option></select>&nbsp;&nbsp;
     二级分类：<select id="class_2_select"><option value="" selected="selected">---请选择---</option></select>&nbsp;&nbsp;
     品牌：<select id="tm_class_select"><option value="" selected="selected">---请选择---</option></select>&nbsp;&nbsp;

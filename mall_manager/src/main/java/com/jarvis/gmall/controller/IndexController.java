@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 
+    @RequestMapping("/goto_attr")
+    public String goto_attr(){
+        return "attr";
+    }
+
     @RequestMapping("/goto_spu")
     public String goto_spu(){
         return "spu";
