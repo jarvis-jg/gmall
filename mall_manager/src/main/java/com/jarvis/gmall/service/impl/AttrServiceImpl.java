@@ -29,4 +29,12 @@ public class AttrServiceImpl implements AttrService {
         }
 
     }
+
+    @Override
+    public List<OBJECT_T_MALL_ATTR> get_attr_list(int flbh2) {
+        List<OBJECT_T_MALL_ATTR> attr_list = attrMapper.select_attr_list(flbh2);
+        return attr_list;
+    }
+
+
 }

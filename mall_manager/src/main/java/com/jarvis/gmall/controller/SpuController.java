@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -23,6 +24,13 @@ public class SpuController {
 
     @Autowired
     SpuService spuService;
+
+    @RequestMapping("/get_shp_list")
+    @ResponseBody
+    public List<T_MALL_PRODUCT> get_shp_list(int flbh2,int pp_id){
+        List<T_MALL_PRODUCT> shp_list = spuService.get_shp_list(flbh2, pp_id);
+        return shp_list;
+    }
 
     @RequestMapping("/spu_add")
     public String spu_add(@RequestParam("files") MultipartFile[] files, T_MALL_PRODUCT product, int fm_id){

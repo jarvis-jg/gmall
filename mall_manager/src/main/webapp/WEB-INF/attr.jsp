@@ -46,7 +46,9 @@
 
         function get_attr_list(flbh2) {
 
-            $.getJSON("")
+            $.post("get_attr_list.do",{flbh2: flbh2}, function (data) {
+                $("#attrListInner").html(data);
+            });
         }
     </script>
 </head>
@@ -64,7 +66,7 @@
     编辑<br>
     删除<br>
     <hr>
-    <div id="attrInner"></div>
+    <div id="attrListInner"></div>
 </body>
 </html>
 

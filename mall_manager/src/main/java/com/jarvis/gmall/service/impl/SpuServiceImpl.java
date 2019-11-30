@@ -33,4 +33,13 @@ public class SpuServiceImpl implements SpuService {
         map.put("image_list", image_list);
         spuMapper.insert_images(map);
     }
+
+    @Override
+    public List<T_MALL_PRODUCT> get_shp_list(int flbh2, int pp_id) {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("flbh2", flbh2);
+        map.put("pp_id", pp_id);
+        List<T_MALL_PRODUCT> shp_list = spuMapper.select_shp_list(map);
+        return shp_list;
+    }
 }

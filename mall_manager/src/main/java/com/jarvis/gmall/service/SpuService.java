@@ -13,4 +13,6 @@ import java.util.List;
 public interface SpuService {
 
     void save_spu(List<String> image_list, T_MALL_PRODUCT product, int fm_id);
+
+    List<T_MALL_PRODUCT> get_shp_list(int flbh2, int pp_id);
 }

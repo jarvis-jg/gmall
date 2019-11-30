@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jarvis.gmall.mapper.SkuMapper">
+
+   <insert id="insert_sku" parameterType="com.jarvis.gmall.entity.T_MALL_SKU" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+       INSERT INTO t_mall_sku ( shp_id, kc, jg, sku_mch, kcdz )
+        VALUES
+            (#{shp_id},#{kc},#{jg},#{sku_mch},#{kcdz})
+   </insert>
+
+    <insert id="insert_sku_attr_value" parameterType="Map">
+         INSERT INTO t_mall_sku_attr_value ( shxm_id, shxzh_id, shp_id, sku_id )
+        VALUES
+        <foreach collection="list_sku_av" item="sku_av" separator=",">
+            (#{sku_av.shxm_id},#{sku_av.shxzh_id},#{sku_av.shp_id},#{sku_id})
+        </foreach>
+    </insert>
+
+
+</mapper>

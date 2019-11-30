@@ -3,12 +3,49 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jarvis.gmall.mapper.AttrMapper">
+    <!--
+       controller一个复杂的对象集合，一定对应着一个resultMap
+       一个resultMap一定会对应着一个数据夺表查询的语句
+   -->
+    <resultMap id="select_attr_list_map" type="com.jarvis.gmall.dto.OBJECT_T_MALL_ATTR" autoMapping="true">
+        <id property="id" column="attr_id"></id>
+        <collection property="value_list" ofType="com.jarvis.gmall.entity.T_MALL_VALUE" autoMapping="true">
+            <id property="id" column="val_id"></id>
+        </collection>
+    </resultMap>
+
+    <select id="select_attr_list" resultMap="select_attr_list_map">
+        SELECT attr.id attr_id,attr.*,val.id val_id, val.*
+        FROM
+            t_mall_attr attr,
+            t_mall_value val
+        WHERE
+            attr.id = val.shxm_id
+            AND attr.flbh2 = #{flbh2}
+    </select>
+
 
    <insert id="insert_attr" useGeneratedKeys="true" keyColumn="id" keyProperty="attr.id">
         INSERT INTO t_mall_attr ( shxm_mch, flbh2 )
         VALUES
             (#{attr.shxm_mch}, #{flbh2})
    </insert>
+
+    <insert id="insert_values">
+        insert into t_mall_value(
+        shxzh,
+        shxm_id,
+        shxzh_mch
+        )
+        values
+        <foreach collection="value_list" item="val" separator=",">
+            (
+            #{val.shxzh},
+            #{shxm_id},
+            #{val.shxzh_mch}
+            )
+        </foreach>
+    </insert>
 
 
 </mapper>

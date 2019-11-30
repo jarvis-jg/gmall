@@ -13,4 +13,7 @@ import java.util.List;
 public interface AttrService {
 
     void save_attrs(int flbh2, List<OBJECT_T_MALL_ATTR> attr_list);
+
+
+    List<OBJECT_T_MALL_ATTR> get_attr_list(int flbh2);
 }

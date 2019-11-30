@@ -4,6 +4,14 @@
 
 <mapper namespace="com.jarvis.gmall.mapper.SpuMapper">
 
+    <select id="select_shp_list" parameterType="Map" resultType="com.jarvis.gmall.entity.T_MALL_PRODUCT">
+        SELECT *
+        FROM
+            t_mall_product
+        WHERE
+            flbh2 = #{flbh2} and pp_id = #{pp_id}
+    </select>
+
     <insert id="insert_spu" parameterType="com.jarvis.gmall.entity.T_MALL_PRODUCT"
         useGeneratedKeys="true" keyColumn="id" keyProperty="id">
        INSERT INTO t_mall_product (
