@@ -1,7 +1,9 @@
 package com.jarvis.gmall.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * gmall : com.jarvis.gmall.controller
@@ -28,7 +30,8 @@ public class IndexController {
     }
 
     @RequestMapping("/index")
-    public String index(){
+    public String index(@RequestParam(value = "tabs_json",defaultValue = "") String tabs_json, ModelMap map){
+        map.put("tabs_json", tabs_json);
         return "main";
     }
 }

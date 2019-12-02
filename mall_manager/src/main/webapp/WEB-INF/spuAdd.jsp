@@ -16,6 +16,29 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>硅谷商城</title>
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+    spu信息添加
+
+    <form action="spu_add.do" method="post" enctype="multipart/form-data">
+        <input name="flbh1" type="hidden" value="${spu.flbh1}"/>
+        <input name="flbh2" type="hidden" value="${spu.flbh2}"/>
+        <input name="pp_id" type="hidden" value="${spu.pp_id}"/>
+
+        商品名称：<input name="shp_mch" type="text" /><br>
+        商品描述：<textarea name="shp_msh" rows="10" cols="50"></textarea><br>
+        商品图片：<br>
+        <div id="div_0" style="float: left; border: 1px red solid; margin-left: 10px">
+            <input id="file_0" name="files" type="file" style="cursor: pointer; display: none" onchange="replace_image(0)">
+            <img id="img_0" src="image/upload_hover.png" width="100px" height="100px" onclick="choose_file(0)"/>
+        </div>
+
+        <br>
+        <input type="submit" value="提交">
+    </form>
+
+
     <script type="text/javascript">
         function choose_file(index) {
             $("#file_" + index).click();
@@ -79,26 +102,6 @@
             $("#div_" + index).after(div_node);
         }
     </script>
-</head>
-<body>
-    spu信息添加
-
-    <form action="spu_add.do" method="post" enctype="multipart/form-data">
-        <input name="flbh1" type="hidden" value="${spu.flbh1}"/>
-        <input name="flbh2" type="hidden" value="${spu.flbh2}"/>
-        <input name="pp_id" type="hidden" value="${spu.pp_id}"/>
-
-        商品名称：<input name="shp_mch" type="text" /><br>
-        商品描述：<textarea name="shp_msh" rows="10" cols="50"></textarea><br>
-        商品图片：<br>
-        <div id="div_0" style="float: left; border: 1px red solid; margin-left: 10px">
-            <input id="file_0" name="files" type="file" style="cursor: pointer; display: none" onchange="replace_image(0)">
-            <img id="img_0" src="image/upload_hover.png" width="100px" height="100px" onclick="choose_file(0)"/>
-        </div>
-
-        <br>
-        <input type="submit" value="提交">
-    </form>
 </body>
 </html>
 

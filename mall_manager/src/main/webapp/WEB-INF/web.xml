@@ -9,10 +9,6 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
-  
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
 
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
@@ -30,6 +26,10 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
 
   <servlet>
     <servlet-name>mvc</servlet-name>
@@ -44,4 +44,5 @@
     <servlet-name>mvc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+
 </web-app>

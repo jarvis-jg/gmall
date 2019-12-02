@@ -16,6 +16,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>硅谷商城</title>
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+    Attr信息添加
+    <hr>
+    <form action="attr_add.do">
+        <input name="flbh2" type="text" value="${flbh2}">
+        <table id="tbl_0" border="1px black solid" width="800px">
+            <tr><td>属性名：<input name="attr_list[0].shxm_mch" type="text"/></td><td></td><td><button id="btn_0" onclick="add_value(0);" type="button">添加属性值</button></td></tr>
+            <tr><td>属性值：<input name="attr_list[0].value_list[0].shxzh" type="text"/></td><td>单位：<input name="attr_list[0].value_list[0].shxzh_mch" type="text"/></td><td><button id="del_0_0" type="button" onclick="delete_attr_value(this,0);">删除</button></td></tr>
+            <tr><td>属性值：<input name="attr_list[0].value_list[1].shxzh" type="text"/></td><td>单位：<input name="attr_list[0].value_list[1].shxzh_mch" type="text"/></td><td><button id="del_0_1" type="button" onclick="delete_attr_value(this,0);">删除</button></td></tr>
+        </table>
+
+        <table id="tbl_1" border="1px black solid" width="800px">
+            <tr><td>属性名：<input name="attr_list[1].shxm_mch" type="text"/></td><td></td><td><button id="btn_1" onclick="add_value(1);" type="button">添加属性值</button></td></tr>
+            <tr><td>属性值：<input name="attr_list[1].value_list[0].shxzh" type="text"/></td><td>单位：<input name="attr_list[1].value_list[0].shxzh_mch" type="text"/></td><td><button id="del_1_0" type="button" onclick="delete_attr_value(this,1);">删除</button></td></tr>
+            <tr><td>属性值：<input name="attr_list[1].value_list[1].shxzh" type="text"/></td><td>单位：<input name="attr_list[1].value_list[1].shxzh_mch" type="text"/></td><td><button id="del_1_1" type="button" onclick="delete_attr_value(this,1);">删除</button></td></tr>
+        </table>
+
+        <button id="add_attr_btn" type="button" onclick="add_attr();">添加属性</button>
+
+        <input type="submit" value="提交"/>
+    </form>
+
+
     <script type="text/javascript">
         function add_value(index) {
             var td_index = $("#tbl_" + index + " tr").length - 1;
@@ -97,28 +122,6 @@
         }
 
     </script>
-</head>
-<body>
-    Attr信息添加
-    <hr>
-    <form action="attr_add.do">
-        <input name="flbh2" type="text" value="${flbh2}">
-        <table id="tbl_0" border="1px black solid" width="800px">
-            <tr><td>属性名：<input name="attr_list[0].shxm_mch" type="text"/></td><td></td><td><button id="btn_0" onclick="add_value(0);" type="button">添加属性值</button></td></tr>
-            <tr><td>属性值：<input name="attr_list[0].value_list[0].shxzh" type="text"/></td><td>单位：<input name="attr_list[0].value_list[0].shxzh_mch" type="text"/></td><td><button id="del_0_0" type="button" onclick="delete_attr_value(this,0);">删除</button></td></tr>
-            <tr><td>属性值：<input name="attr_list[0].value_list[1].shxzh" type="text"/></td><td>单位：<input name="attr_list[0].value_list[1].shxzh_mch" type="text"/></td><td><button id="del_0_1" type="button" onclick="delete_attr_value(this,0);">删除</button></td></tr>
-        </table>
-
-        <table id="tbl_1" border="1px black solid" width="800px">
-            <tr><td>属性名：<input name="attr_list[1].shxm_mch" type="text"/></td><td></td><td><button id="btn_1" onclick="add_value(1);" type="button">添加属性值</button></td></tr>
-            <tr><td>属性值：<input name="attr_list[1].value_list[0].shxzh" type="text"/></td><td>单位：<input name="attr_list[1].value_list[0].shxzh_mch" type="text"/></td><td><button id="del_1_0" type="button" onclick="delete_attr_value(this,1);">删除</button></td></tr>
-            <tr><td>属性值：<input name="attr_list[1].value_list[1].shxzh" type="text"/></td><td>单位：<input name="attr_list[1].value_list[1].shxzh_mch" type="text"/></td><td><button id="del_1_1" type="button" onclick="delete_attr_value(this,1);">删除</button></td></tr>
-        </table>
-
-        <button id="add_attr_btn" type="button" onclick="add_attr();">添加属性</button>
-
-        <input type="submit" value="提交"/>
-    </form>
 </body>
 </html>
 
