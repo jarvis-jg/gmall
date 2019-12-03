@@ -62,7 +62,7 @@ public class AttrController {
     @RequestMapping("/attr_add")
     public ModelAndView attr_add(int flbh2, Model_T_MALL_ATTR attr,String tabs_json){
 
-        attrService.save_attrs(flbh2,attr.getAttr_list());
+        //attrService.save_attrs(flbh2,attr.getAttr_list());
 
         ModelAndView modelAndView = new ModelAndView("redirect:/index.do");
         modelAndView.addObject("tabs_json", tabs_json);

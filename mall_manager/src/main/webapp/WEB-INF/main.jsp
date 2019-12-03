@@ -7,7 +7,8 @@
 <html>
 <head>
     <base href="<%=basepath %>" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" isELIgnored="false" />
+    <meta/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>硅谷商城</title>
     <link rel="stylesheet" type="text/css" href="js/easy-ui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="js/easy-ui/themes/icon.css">

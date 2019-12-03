@@ -20,6 +20,13 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+         <groupId>org.apache.tomcat</groupId>
+         <artifactId>tomcat-catalina</artifactId>
+         <version>9.0.20</version>
+         <scope>provided</scope>
+    </dependency>
     <!-- 1.连接池 -->
     <dependency>
       <groupId>mysql</groupId>
