@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jarvis.gmall.mapper.T_MALL_CLASS_1_mapper">
 
-    <select id="getList" resultType="com.jarvis.gmall.entity.T_MALL_CLASS_1">
+    <select id="getList" resultType="com.jarvis.T_MALL_CLASS_1">
         select * from t_mall_class_1
     </select>
 

@@ -9,7 +9,7 @@
    -->
     <resultMap id="select_attr_list_map" type="com.jarvis.gmall.dto.OBJECT_T_MALL_ATTR" autoMapping="true">
         <id property="id" column="attr_id"></id>
-        <collection property="value_list" ofType="com.jarvis.gmall.entity.T_MALL_VALUE" autoMapping="true">
+        <collection property="value_list" ofType="com.jarvis.T_MALL_VALUE" autoMapping="true">
             <id property="id" column="val_id"></id>
         </collection>
     </resultMap>
