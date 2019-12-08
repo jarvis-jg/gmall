@@ -50,10 +50,10 @@
 								<div  id="class_2_ul" class="two_nav">
 								</div>
 							</li>
-							<li><a href="">营养保健</a></li>
-							<li><a href="">图书</a></li>
-							<li><a href="">彩票</a></li>
-							<li><a href="">理财</a></li>
+							<li><a href="javascript:;">营养保健</a></li>
+							<li><a href="javascript:;">图书</a></li>
+							<li><a href="javascript:;">彩票</a></li>
+							<li><a href="javascript:;">理财</a></li>
 						</ul>
 					</div>
 				</div>

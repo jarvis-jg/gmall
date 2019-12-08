@@ -32,10 +32,10 @@ public class SkuController {
     @RequestMapping("/sku_add")
     public ModelAndView sku_add(T_MALL_PRODUCT product, T_MALL_SKU sku, MODEL_T_MALL_SKU_ATTR_VALUE sku_av){
 
-//        sku.setShp_id(product.getId());
-//        skuService.save_sku(sku);
-//
-//        skuService.save_sku_attr_value(sku.getId(),sku_av.getList_sku_av());
+        sku.setShp_id(product.getId());
+        skuService.save_sku(sku);
+
+        skuService.save_sku_attr_value(sku.getId(),sku_av.getList_sku_av());
 
         ModelAndView model = new ModelAndView("redirect:/goto_sku_add.do");
         model.addObject("flbh1",product.getFlbh1());

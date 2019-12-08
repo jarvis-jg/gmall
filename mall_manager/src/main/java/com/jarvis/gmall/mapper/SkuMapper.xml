@@ -4,7 +4,7 @@
 
 <mapper namespace="com.jarvis.gmall.mapper.SkuMapper">
 
-   <insert id="insert_sku" parameterType="com.jarvis.T_MALL_SKU" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+   <insert id="insert_sku" parameterType="com.jarvis.gmall.entity.T_MALL_SKU" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
        INSERT INTO t_mall_sku ( shp_id, kc, jg, sku_mch, kcdz )
         VALUES
             (#{shp_id},#{kc},#{jg},#{sku_mch},#{kcdz})

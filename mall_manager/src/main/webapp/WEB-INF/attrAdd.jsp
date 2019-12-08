@@ -21,7 +21,7 @@
 <body>
     Attr信息添加
     <hr>
-    <form action="attr_add.do">
+    <form action="attr_add.do" id="attr_form">
         <input name="flbh2" type="text" value="${flbh2}">
         <table id="tbl_0" border="1px black solid" width="800px">
             <tr><td>属性名：<input name="attr_list[0].shxm_mch" type="text"/></td><td></td><td><button id="btn_0" onclick="add_value(0);" type="button">添加属性值</button></td></tr>
@@ -92,8 +92,7 @@
         }
         // 如果此时的id也叫add_attr就会出错
         function add_attr() {
-            var size = $("table").length;
-
+            var size = $("#attr_form table").length;
             var table = $('<table border="1px black solid" width="800px"></table>').attr("id", "tbl_" + size);
 
             table.append(generate_first_tr(size));
