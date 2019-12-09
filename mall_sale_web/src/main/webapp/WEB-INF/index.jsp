@@ -36,6 +36,7 @@
     </div>
 
     <jsp:include page="searchArea.jsp"></jsp:include>
+
     <jsp:include page="classList.jsp"></jsp:include>
 
     <div class="banner">
