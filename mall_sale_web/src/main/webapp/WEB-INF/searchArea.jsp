@@ -48,27 +48,6 @@
                         </span>
                 </div>
 
-                <div class="one border">
-                    <img src="images/lec1.png"/>
-                    <span class="one_name">
-                            商品名称商品名称商品名称商品名称
-                        </span>
-                    <span class="one_prece">
-                            <b>￥20000</b><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除
-                        </span>
-                </div>
-                <div class="one border">
-                    <img src="images/lec1.png"/>
-                    <span class="one_name">
-                            商品名称商品名称商品名称商品名称
-                        </span>
-                    <span class="one_prece">
-                            <b>￥20000</b><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除
-                        </span>
-                </div>
-
 
                 <div class="gobottom">
                     共<span>2</span>件商品&nbsp;&nbsp;&nbsp;&nbsp;

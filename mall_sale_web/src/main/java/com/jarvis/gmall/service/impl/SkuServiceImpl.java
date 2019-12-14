@@ -49,13 +49,11 @@ public class SkuServiceImpl implements SkuService {
                         sb.append(" a" + i + ".sku_id = a" + (i + 1) + ".sku_id ");
                     }
 
-                    if ((i + 2) < list_sku_av.size()){
+                    if (list_sku_av.size() > 2 && (i + 2) < list_sku_av.size()){
                         sb.append(" AND ");
                     }
-
                 }
             }
-
 
             sb.append(" ) ");
             querySql = sb.toString();

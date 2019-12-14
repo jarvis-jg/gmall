@@ -26,6 +26,7 @@ public class IndexController {
     @Autowired
     SkuService skuService;
 
+
     @RequestMapping("/goto_list")
     public String goto_list(int flbh2, ModelMap map){
 
