@@ -48,7 +48,8 @@
 
             <c:if test="${not empty user}">
                 <a href="">订单</a>
-                <a href="">用户:${user.yh_mch}</a>
+                <a href="">用户:${user.yh_nch}</a>
+                <a href="goto_logout.do">退出登录</a>
             </c:if>
 
         </div>

@@ -1,0 +1,3 @@
+ws:生成客户端的代码
+如下命令：
+wsimport -s /Library/workspace/idea_project/gmall/ws_client/src/main/java http://192.168.1.10:1234/ws?wsdl

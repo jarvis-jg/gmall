@@ -4,6 +4,10 @@
 
 <mapper namespace="com.jarvis.gmall.mapper.CartMapper">
 
+    <select id="select_cart_by_user" parameterType="com.jarvis.gmall.entity.T_MALL_USER_ACCOUNT" resultType="com.jarvis.gmall.entity.T_MALL_SHOPPINGCAR">
+        SELECT * FROM t_mall_shoppingcar WHERE yh_id = #{id}
+    </select>
+
     <select id="select_cart_exists" parameterType="com.jarvis.gmall.entity.T_MALL_SHOPPINGCAR" resultType="int">
         SELECT COUNT(1) FROM t_mall_shoppingcar WHERE sku_id = #{sku_id}
     </select>

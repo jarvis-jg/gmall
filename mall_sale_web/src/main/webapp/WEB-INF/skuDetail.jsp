@@ -16,7 +16,7 @@
     <base href="<%=basepath %>"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="css/css.css">cart_submit
+    <link rel="stylesheet" type="text/css" href="css/css.css">
     <script type="text/javascript" src='js/jquery-1.7.2.min.js'></script>
     <script type="text/javascript">
         function cart_submit() {
@@ -30,9 +30,6 @@
     <!--<div class="top_img">
         <img src="./images/top_img.jpg" alt="">
     </div>-->
-    <jsp:include page="searchArea.jsp"></jsp:include>
-
-    <jsp:include page="classList.jsp"></jsp:include>
 
     <div class="Dbox">
         <div class="box">

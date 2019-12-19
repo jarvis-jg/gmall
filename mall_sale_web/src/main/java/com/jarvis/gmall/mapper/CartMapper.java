@@ -1,6 +1,9 @@
 package com.jarvis.gmall.mapper;
 
 import com.jarvis.gmall.entity.T_MALL_SHOPPINGCAR;
+import com.jarvis.gmall.entity.T_MALL_USER_ACCOUNT;
+
+import java.util.List;
 
 /**
  * gmall : com.jarvis.gmall.mapper
@@ -15,4 +18,6 @@ public interface CartMapper {
     void insert_cart(T_MALL_SHOPPINGCAR cart);
 
     void update_cart(T_MALL_SHOPPINGCAR t_mall_shoppingcar);
+
+    List<T_MALL_SHOPPINGCAR> select_cart_by_user(T_MALL_USER_ACCOUNT select_user);
 }

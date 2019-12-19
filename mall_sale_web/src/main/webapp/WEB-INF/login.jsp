@@ -51,16 +51,16 @@
                 <div class="input2">
                     密码：<input type="text" class="input1_01" name="yh_mm"/>
                 </div>
-            </form>
-            <div class="blank_01"></div>
-            <div class="blank_01"></div>
-            <div class="box_01">
-                <input type="checkbox" class="box_01_box"/>
-                <div class="box_01_both">
-                    <div class="box_01_both_1">自动登陆</div>
-                    <div class="box_01_both_2">忘记密码？</div>
+
+                <div class="blank_01"></div>
+                <div class="blank_01"></div>
+                <div class="box_01">
+                    <div class="box_01_both">
+                        <div class="box_01_both_1"><input type="radio" name="datasource_type" value="1" />数据源1</div>
+                        <div class="box_01_both_1"><input type="radio" name="datasource_type" value="2" />数据源2</div>
+                    </div>
                 </div>
-            </div>
+            </form>
             <div class="blank_01"></div>
             <%-- 同时出现2个请求，请求发往了超链接的地址，吞掉了我们控制器返回的页面
                 此时用javascript:;,不会发送请求！！！
