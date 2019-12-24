@@ -5,8 +5,12 @@
 <mapper namespace="com.jarvis.gmall.mapper.AddressMapper">
 
 
-    <select id="select_address" parameterType="com.jarvis.gmall.entity.T_MALL_ADDRESS" resultType="com.jarvis.gmall.entity.T_MALL_ADDRESS">
-        SELECT * FROM t_mall_address WHERE yh_id = #{yh_id}
+    <select id="select_addresses" parameterType="int" resultType="com.jarvis.gmall.entity.T_MALL_ADDRESS">
+        SELECT * FROM t_mall_address WHERE yh_id = #{user_id}
+    </select>
+
+    <select id="select_address" parameterType="int" resultType="com.jarvis.gmall.entity.T_MALL_ADDRESS">
+        SELECT * FROM t_mall_address WHERE id = #{address_id}
     </select>
 
     <insert id="insert_address" parameterType="com.jarvis.gmall.entity.T_MALL_ADDRESS">

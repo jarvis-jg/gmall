@@ -15,7 +15,13 @@
 <head>
     <base href="<%=basepath %>"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Insert title here</title>
+    <title>Insert title here</title>goto_check
+    <script type="text/javascript" src='js/jquery-1.7.2.min.js'></script>
+    <script type="text/javascript">
+        function goto_check() {
+            $("#goto_check").submit();
+        }
+    </script>
 </head>
 <body>
 <div class="Cbox">
@@ -52,8 +58,10 @@
 </div>
 
 <div class="Cprice">
-    <div class="price">总价：${sum}</div>
-    <div class="jiesuan">结算</div>
+    <form id="goto_check" action="goto_checkOrder.do" method="post">
+        <div class="price">总价：${sum}</div>
+        <div class="jiesuan" onclick="goto_check()">结算</div>
+    </form>
 </div>
 </body>
 </html>

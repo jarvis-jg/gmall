@@ -5,6 +5,8 @@ import com.jarvis.gmall.mapper.AddressMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * gmall : com.jarvis.gmall.service
  *
@@ -23,8 +25,14 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public T_MALL_ADDRESS get_address(T_MALL_ADDRESS address) {
-        return addressMapper.select_address(address);
+    public List<T_MALL_ADDRESS> getAddresses(int user_id) {
+        return addressMapper.select_addresses(user_id);
     }
+
+    @Override
+    public T_MALL_ADDRESS getAddress(int address_id) {
+        return addressMapper.select_address(address_id);
+    }
+
 
 }

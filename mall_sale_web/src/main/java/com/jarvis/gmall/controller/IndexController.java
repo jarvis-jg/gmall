@@ -53,4 +53,9 @@ public class IndexController {
     public String to_login(){
         return "login";
     }
+
+    @RequestMapping("/to_login_check")
+    public String to_login_check(){
+        return "loginOrder";
+    }
 }

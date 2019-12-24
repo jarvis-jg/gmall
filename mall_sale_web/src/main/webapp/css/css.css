@@ -169,14 +169,14 @@ a{text-decoration:none;color: #5A5A5A;font-family: '微软雅黑';font-size: 12p
 .comment{width: 1210px;height: 100px;background: #f5f5f5;margin: 0 auto;color: #333333;text-align: center;line-height: 50px;}
 
 /*订单支付*/
-.message{height: 550px;width: 990px;border: 1px solid #f0f0f0;margin: 0 auto;padding:10px;color:#666 ;}
+.message{width: 990px;border: 1px solid #f0f0f0;margin: 0 auto;padding:10px;color:#666 ;}
 .msg_title{color: #333333;font-weight: bold;}
 .msg_addr{width: 870px;height: 30px;margin: 10px auto 0;}
 .msg_left{display: inline-block;width: 140px;height: 26px;border: 2px solid #e4393c;text-align: center;color: #666666;}
 .msg_right{padding-left: 5px;display: inline-block;width: 700px;height: 26px;color: #666666;}
 .msg_line{width: 870px;height: 2px;background: #f0f0f0;margin: 10px auto;}
 .addrs{display: inline-block;margin-top: 20px;margin-left: 55px;}
-.msg_list{width: 870px;height: 260px;margin: 0 auto;}
+.msg_list{width: 870px;margin: 0 auto;}
 .msg_list_left{float: left;padding: 15px;width: 270px;height: 230px;background: #f7f7f7;}
 .left_title{width: 148px;height: 30px;line-height: 30px;text-align: center;border: 2px solid #e4393c;margin-top: 15px;margin-left: 20px;}
 .msg_list_right{float: left;width:570px ;height: 260px;background: #f3fbfe;}

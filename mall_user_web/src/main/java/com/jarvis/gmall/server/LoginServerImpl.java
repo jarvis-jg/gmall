@@ -20,10 +20,10 @@ public class LoginServerImpl implements LoginServerInf {
     LoginService loginService;
 
     @Override
-    @Path("/login")
+    @Path("login")
     @GET
-    @Consumes("/application/x-www-form-urlencoded")
-    @Produces("/application/json")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces("application/json")
     public String login(@BeanParam T_MALL_USER_ACCOUNT user) {
         MyRoutingDataSource.setKey("1");
         T_MALL_USER_ACCOUNT select_user = loginService.login(user);
@@ -32,10 +32,10 @@ public class LoginServerImpl implements LoginServerInf {
     }
 
     @Override
-    @Path("/login2")
+    @Path("login2")
     @GET
-    @Consumes("/application/x-www-form-urlencoded")
-    @Produces("/application/json")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces("application/json")
     public String login2(@BeanParam T_MALL_USER_ACCOUNT user) {
         MyRoutingDataSource.setKey("2");
         T_MALL_USER_ACCOUNT select_user = loginService.login(user);

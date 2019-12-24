@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -49,8 +50,10 @@ public class LoginController {
     }
 
 
+
+
     @RequestMapping("/login")
-    public String login(@CookieValue(value="list_cart_cookie",required = false) String cart_cookie,T_MALL_USER_ACCOUNT user_account,String datasource_type, HttpSession session, HttpServletResponse response){
+    public String login(@CookieValue(value="list_cart_cookie",required = false) String cart_cookie, T_MALL_USER_ACCOUNT user_account, String datasource_type, @RequestParam(value = "redirect_url",required = false) String redirect_url, HttpSession session, HttpServletResponse response){
 
 //        JaxWsProxyFactoryBean jwfb = new JaxWsProxyFactoryBean();
 //        jwfb.setAddress(MyPropertyUtil.getProperty("ws.properties","login_url"));
@@ -86,7 +89,12 @@ public class LoginController {
             combine_cart(select_user,session,response,cart_cookie);
 
         }
-        return "redirect:/index.do";
+
+        if (redirect_url != null){
+            return "redirect:/" + redirect_url;
+        }else{
+            return "redirect:/index.do";
+        }
     }
 
     private void combine_cart(T_MALL_USER_ACCOUNT select_user, HttpSession session, HttpServletResponse response, String cart_cookie) {

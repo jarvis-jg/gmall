@@ -41,4 +41,10 @@
 		<property name="url" value="${login_test}"></property>
 		<property name="tClass" value="com.jarvis.gmall.server.TestServerInf"></property>
 	</bean>
+
+	<bean id="addressService" class="com.jarvis.gmall.util.AddressServerFactoryBean">
+		<property name="url" value="${address_url}"></property>
+		<property name="tClass" value="com.jarvis.gmall.server.AddressServerInf"></property>
+	</bean>
+
 </beans>

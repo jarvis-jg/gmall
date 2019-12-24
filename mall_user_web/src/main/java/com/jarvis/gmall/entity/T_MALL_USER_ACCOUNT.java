@@ -2,9 +2,10 @@ package com.jarvis.gmall.entity;
 
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 @XmlRootElement
-public class T_MALL_USER_ACCOUNT {
+public class T_MALL_USER_ACCOUNT implements Serializable {
 
 	@FormParam("id")
 	private int id;

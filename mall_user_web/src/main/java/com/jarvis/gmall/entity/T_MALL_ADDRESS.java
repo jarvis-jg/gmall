@@ -2,14 +2,15 @@ package com.jarvis.gmall.entity;
 
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 @XmlRootElement
-public class T_MALL_ADDRESS {
+public class T_MALL_ADDRESS implements Serializable {
 
 	@FormParam("id")
 	private int id;
-	@FormParam("yh_dz")
-	private String yh_dz;
+	@FormParam("dz_mch")
+	private String dz_mch;
 	@FormParam("dzzt")
 	private String dzzt;
 	@FormParam("yh_id")
@@ -27,12 +28,12 @@ public class T_MALL_ADDRESS {
 		this.id = id;
 	}
 
-	public String getYh_dz() {
-		return yh_dz;
+	public String getDz_mch() {
+		return dz_mch;
 	}
 
-	public void setYh_dz(String yh_dz) {
-		this.yh_dz = yh_dz;
+	public void setDz_mch(String dz_mch) {
+		this.dz_mch = dz_mch;
 	}
 
 	public String getDzzt() {
