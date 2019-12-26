@@ -4,6 +4,60 @@
 
 <mapper namespace="com.jarvis.gmall.mapper.OrderMapper">
 
+
+    <select id="select_count_kc" parameterType="Map" resultType="int">
+        SELECT
+            COUNT( 1 )
+        FROM
+            t_mall_sku
+        WHERE
+            id = #{sku_id} and kc > #{limit}
+    </select>
+
+    <select id="select_kc_lock" parameterType="int" resultType="long">
+        SELECT
+            kc
+        FROM
+            t_mall_sku
+        WHERE
+            id = #{sku_id} FOR UPDATE
+    </select>
+
+    <select id="select_kc" parameterType="int" resultType="long">
+        SELECT
+            kc
+        FROM
+            t_mall_sku
+        WHERE
+            id = #{sku_id}
+    </select>
+
+    <update id="update_sku" parameterType="Map">
+        UPDATE t_mall_sku
+        SET kc = kc - #{sku_shl}, sku_xl = IFNULL(sku_xl,0) + #{sku_shl} WHERE id = #{sku_id}
+    </update>
+
+    <update id="update_order" parameterType="com.jarvis.gmall.dto.OBJECT_T_MALL_ORDER">
+        UPDATE t_mall_order
+        <set>
+            <if test="jdh!=null">
+                jdh = #{jdh},
+            </if>
+            <if test="yjsdshj!=null">
+                yjsdshj = #{yjsdshj}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="update_flow" parameterType="com.jarvis.gmall.dto.OBJECT_T_MALL_FLOW">
+        UPDATE t_mall_flow
+        SET psshj = #{psshj}, psmsh = #{psmsh}, ywy = #{ywy}, lxfsh = #{lxfsh}
+        WHERE
+            id = #{id}
+    </update>
+
     <insert id="insert_order" parameterType="com.jarvis.gmall.entity.T_MALL_ORDER" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO t_mall_order ( shhr, zje, jdh, yh_id, dzh_id, dzh_mch )
         VALUES

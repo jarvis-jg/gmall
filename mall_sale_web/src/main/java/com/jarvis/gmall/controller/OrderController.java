@@ -6,6 +6,7 @@ import com.jarvis.gmall.entity.T_MALL_ADDRESS;
 import com.jarvis.gmall.entity.T_MALL_ORDER_INFO;
 import com.jarvis.gmall.entity.T_MALL_SHOPPINGCAR;
 import com.jarvis.gmall.entity.T_MALL_USER_ACCOUNT;
+import com.jarvis.gmall.exception.OverSaleException;
 import com.jarvis.gmall.server.AddressServerInf;
 import com.jarvis.gmall.service.CartService;
 import com.jarvis.gmall.service.OrderService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -39,10 +41,54 @@ public class OrderController {
     @Autowired
     AddressServerInf addressService;
 
+
+
+
+    @RequestMapping("/pay_success")
+    public String pay_success(@ModelAttribute("order") OBJECT_T_MALL_ORDER order){
+        try {
+            orderService.pay_success(order);
+        } catch (OverSaleException e) {
+            e.printStackTrace();
+            return "redirect:/order_fail.do";
+        }
+        return "redirect:/order_success.do";
+    }
+
+    @RequestMapping("/real_pay_success")
+    @ResponseBody
+    public String real_pay_success(@ModelAttribute("order") OBJECT_T_MALL_ORDER order){
+        try {
+            orderService.pay_success(order);
+        } catch (OverSaleException e) {
+            e.printStackTrace();
+            return "success";
+        }
+        return "success";
+    }
+
+    @RequestMapping("/order_fail")
+    public String order_fail(){
+        return "orderFail";
+    }
+
+    @RequestMapping("/order_success")
+    public String order_success(){
+        return "orderSuccess";
+    }
+
+    @RequestMapping("/goto_pay")
+    public String goto_pay(){
+        //伪支付服务
+        return "pay";
+    }
+
+
     @RequestMapping("/save_order")
     public String save_order(int address_id,HttpSession session,@ModelAttribute("order") OBJECT_T_MALL_ORDER order,ModelMap map){
         T_MALL_ADDRESS address = null;
         T_MALL_USER_ACCOUNT user = (T_MALL_USER_ACCOUNT) session.getAttribute("user");
+        List<T_MALL_SHOPPINGCAR> list_cart = (List<T_MALL_SHOPPINGCAR>) session.getAttribute("list_cart_session");
 
         try {
             address = addressService.getAddress(address_id);
@@ -55,7 +101,10 @@ public class OrderController {
 
         //同步session
         session.setAttribute("list_cart_session",cartService.get_cart_by_user(user));
-        return "null";
+        map.put("sum", get_sum(list_cart));
+        //接入支付宝失败，用伪支付走通流程
+        //return "realPay";
+        return "redirect:/goto_pay.do";
     }
 
     @RequestMapping("/goto_checkOrder")

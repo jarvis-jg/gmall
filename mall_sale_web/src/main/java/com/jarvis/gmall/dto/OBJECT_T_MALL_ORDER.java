@@ -21,4 +21,5 @@ public class OBJECT_T_MALL_ORDER extends T_MALL_ORDER {
     public void setList_flow(List<OBJECT_T_MALL_FLOW> list_flow) {
         this.list_flow = list_flow;
     }
+
 }
