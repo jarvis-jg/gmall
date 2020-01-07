@@ -25,9 +25,9 @@ public interface OrderMapper {
 
     void delete_carts(@Param("list_cart_id") List<Integer> list_cart_id);
 
-    long select_kc_lock(int sku_id);
+//    long select_kc_lock(int sku_id);
 
-    long select_kc(int sku_id);
+//    long select_kc(int sku_id);
 
     int select_count_kc(Map<Object, Object> map);
 
@@ -36,4 +36,6 @@ public interface OrderMapper {
     void update_flow(OBJECT_T_MALL_FLOW flow);
 
     void update_sku(Map<Object, Object> sku_map);
+
+    long select_kc(Map map);
 }

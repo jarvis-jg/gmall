@@ -79,18 +79,12 @@ public class OrderServiceImpl implements OrderService {
             List<T_MALL_ORDER_INFO> list_info = flow.getList_info();
             for (T_MALL_ORDER_INFO info : list_info) {
 
-                long kc = 0;
                 Map<Object, Object> map = new HashMap<>();
                 map.put("sku_id", info.getSku_id());
                 map.put("limit", 10);
                 int count = orderMapper.select_count_kc(map);
-                if (count == 0){
-                    //带锁
-                    kc = orderMapper.select_kc_lock(info.getSku_id());
-                }else {
-                    //不带锁【库存还多】
-                    kc = orderMapper.select_kc(info.getSku_id());
-                }
+
+                long kc = getKc(info.getSku_id(), count);
 
                 if (kc >= info.getSku_shl()){
                     //正常购买
@@ -110,5 +104,22 @@ public class OrderServiceImpl implements OrderService {
         order.setJdh(3);
         order.setYjsdshj(MyDateUtil.getDate(Calendar.DATE,5));
         orderMapper.update_order(order);
+    }
+
+    private long getKc(long sku_id, int count) {
+        long kc;
+        Map map = new HashMap<>();
+        map.put("sku_id", sku_id);
+        map.put("count", count);
+
+        kc = orderMapper.select_kc(map);
+//        if (count == 0){
+//            //带锁
+//            kc = orderMapper.select_kc_lock(info.getSku_id());
+//        }else {
+//            //不带锁【库存还多】
+//            kc = orderMapper.select_kc(info.getSku_id());
+//        }
+        return kc;
     }
 }

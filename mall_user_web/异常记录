@@ -1,0 +1,6 @@
+webservice报如下异常：java.lang.RuntimeException: Cannot create a secure XMLInputFactory
+这里没有答案来描述此错误消息的根本原因。我们对新版本的woodstox-core-asl-4.2.0.jar和旧的wstx-asl-3.2.1.jar都有传递依赖
+
+从我们的版本中排除旧版本就可以了。
+
+如果深入研究旧版本的内容，您会发现它失败，并带有一个异常，该异常最终被包裹在另一个异常中，而该通用消息并不十分有用。

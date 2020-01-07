@@ -14,22 +14,33 @@
             id = #{sku_id} and kc > #{limit}
     </select>
 
-    <select id="select_kc_lock" parameterType="int" resultType="long">
-        SELECT
-            kc
-        FROM
-            t_mall_sku
-        WHERE
-            id = #{sku_id} FOR UPDATE
-    </select>
+<!--    <select id="select_kc_lock" parameterType="int" resultType="long">-->
+<!--        SELECT-->
+<!--            kc-->
+<!--        FROM-->
+<!--            t_mall_sku-->
+<!--        WHERE-->
+<!--            id = #{sku_id} FOR UPDATE-->
+<!--    </select>-->
 
-    <select id="select_kc" parameterType="int" resultType="long">
+<!--    <select id="select_kc" parameterType="int" resultType="long">-->
+<!--        SELECT-->
+<!--            kc-->
+<!--        FROM-->
+<!--            t_mall_sku-->
+<!--        WHERE-->
+<!--            id = #{sku_id}-->
+<!--    </select>-->
+    <select id="select_kc" parameterType="Map" resultType="long">
         SELECT
             kc
         FROM
             t_mall_sku
         WHERE
             id = #{sku_id}
+        <if test="count &lt;= 10">
+            FOR UPDATE
+        </if>
     </select>
 
     <update id="update_sku" parameterType="Map">

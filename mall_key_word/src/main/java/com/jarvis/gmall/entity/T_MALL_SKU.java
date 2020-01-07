@@ -1,17 +1,26 @@
 package com.jarvis.gmall.entity;
 
-import java.math.BigDecimal;
+import org.apache.solr.client.solrj.beans.Field;
+
 import java.util.Date;
 
 public class T_MALL_SKU {
 
+	@Field("id")
 	private int id;
+	@Field("shp_id")
 	private int shp_id;
+	@Field("kc")
 	private int kc;
-	private BigDecimal jg;
+	@Field("jg")
+	private double jg;
+	@Field("chjshj")
 	private Date chjshj;
+	@Field("sku_mch")
 	private String sku_mch;
+	@Field("kcdz")
 	private String kcdz;
+	@Field("sku_xl")
 	private long sku_xl;
 
 	public long getSku_xl() {
@@ -70,12 +79,11 @@ public class T_MALL_SKU {
 		this.sku_mch = sku_mch;
 	}
 
-	public BigDecimal getJg() {
+	public double getJg() {
 		return jg;
 	}
 
-	public void setJg(BigDecimal jg) {
+	public void setJg(double jg) {
 		this.jg = jg;
 	}
-
 }
