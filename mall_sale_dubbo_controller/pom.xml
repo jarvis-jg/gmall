@@ -100,7 +100,7 @@
     <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
-      <version>1.3.1</version>
+      <version>1.3.3</version>
     </dependency>
     <!--json处理：fastjson阿里巴巴旗下，更好用-->
     <dependency>
