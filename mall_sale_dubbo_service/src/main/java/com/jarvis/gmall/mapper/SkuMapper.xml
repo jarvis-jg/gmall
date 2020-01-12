@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jarvis.gmall.mapper.SkuMapper">
+
+    <resultMap id="select_sku_list_by_map" type="com.jarvis.gmall.dto.OBJECT_T_MALL_SKU" autoMapping="true">
+        <id property="id" column="sku_id"></id>
+        <association property="product" javaType="com.jarvis.gmall.entity.T_MALL_PRODUCT" autoMapping="true">
+            <id property="id" column="spu_id"></id>
+        </association>
+        <association property="tm" javaType="com.jarvis.gmall.entity.T_MALL_TRADE_MARK" autoMapping="true">
+            <id property="id" column="tm_id"></id>
+        </association>
+    </resultMap>
+
+    <select id="select_sku_list_by" parameterType="int" resultMap="select_sku_list_by_map">
+        SELECT
+            sku.id sku_id, sku.*, spu.id spu_id, spu.*, tm.id tm_id, tm.*
+        FROM
+            t_mall_sku sku,
+            t_mall_product spu,
+            t_mall_trade_mark tm
+        WHERE
+            sku.shp_id = spu.id
+            AND tm.id = spu.pp_id
+            AND spu.flbh2 = #{flbh2}
+    </select>
+
+    <select id="select_list_by_attr" parameterType="Map" resultMap="select_sku_list_by_map">
+        SELECT
+            sku.id sku_id, sku.*, spu.id spu_id, spu.*, tm.id tm_id, tm.*
+        FROM
+            t_mall_sku sku,
+            t_mall_product spu,
+            t_mall_trade_mark tm
+        WHERE
+            sku.shp_id = spu.id
+            AND tm.id = spu.pp_id
+            AND spu.flbh2 = #{flbh2}
+            ${querySql}
+    </select>
+
+
+</mapper>

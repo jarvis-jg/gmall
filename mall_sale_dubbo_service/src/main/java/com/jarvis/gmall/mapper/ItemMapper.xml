@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jarvis.gmall.mapper.ItemMapper">
+
+    <resultMap id="select_sku_detail_map" type="com.jarvis.gmall.dto.DETAIL_T_MALL_SKU" autoMapping="true">
+        <id property="id" column="sku_id"></id>
+        <association property="spu" javaType="com.jarvis.gmall.entity.T_MALL_PRODUCT" autoMapping="true">
+            <id property="id" column="spu_id"></id>
+        </association>
+        <collection property="list_image" ofType="com.jarvis.gmall.entity.T_MALL_PRODUCT_IMAGE" autoMapping="true">
+            <id property="id" column="img_id"></id>
+        </collection>
+        <collection property="object_av_list" ofType="com.jarvis.gmall.dto.OBJECT_AV_NAME" autoMapping="true">
+            <result property="shxm_mch" column="shxm_mch"></result>
+            <result property="shxzh_mch" column="shxzh_mch"></result>
+        </collection>
+    </resultMap>
+
+    <select id="select_sku_detail" parameterType="Map" resultMap="select_sku_detail_map">
+        SELECT
+            sku.id sku_id,
+            sku.*,
+            spu.id spu_id,
+            spu.*,
+            img.id img_id,
+            img.*,
+            attr.id attr_id,
+            attr.shxm_mch shxm_mch,
+            CONCAT(val.shxzh,val.shxzh_mch) shxzh_mch
+        FROM
+            t_mall_sku sku,
+            t_mall_sku_attr_value av,
+            t_mall_product spu,
+            t_mall_product_image img,
+            t_mall_attr attr,
+            t_mall_value val
+        WHERE
+            sku.id = av.sku_id
+            AND spu.id = img.shp_id
+            AND attr.id = av.shxm_id
+            AND val.id = av.shxzh_id
+            AND sku.shp_id = spu.id
+            AND sku.id = #{sku_id}
+    </select>
+
+    <select id="select_sku_list" parameterType="int" resultType="com.jarvis.gmall.entity.T_MALL_SKU">
+        SELECT * FROM t_mall_sku sku WHERE sku.shp_id = #{spu_id}
+    </select>
+
+
+</mapper>

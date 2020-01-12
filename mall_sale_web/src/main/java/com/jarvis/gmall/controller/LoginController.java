@@ -7,13 +7,20 @@ import com.jarvis.gmall.server.LoginServerInf;
 import com.jarvis.gmall.server.TestServerInf;
 import com.jarvis.gmall.service.CartService;
 import com.jarvis.gmall.util.MyJsonUtil;
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.JmsException;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -42,6 +49,12 @@ public class LoginController {
 
     @Autowired
     TestServerInf testService;
+
+    @Autowired
+    JmsTemplate jmsTemplate;
+
+    @Autowired
+    ActiveMQQueue queueDestination;
 
     @RequestMapping("/goto_logout")
     public String logout(HttpSession session) {
@@ -74,6 +87,19 @@ public class LoginController {
         if (select_user == null) {
             return "redirect:to_login.do";
         }else {
+
+            try {
+                //发送日志消息
+                final String message = select_user.getId() + "|" + select_user.getYh_mch() + "|" + "|登陆";
+                jmsTemplate.send(queueDestination, new MessageCreator() {
+                    @Override
+                    public Message createMessage(Session session) throws JMSException {
+                        return session.createTextMessage(message);
+                    }
+                });
+            } catch (JmsException e) {
+                e.printStackTrace();
+            }
 
             try {
                 session.setAttribute("user",select_user);

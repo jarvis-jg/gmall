@@ -19,6 +19,13 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public T_MALL_USER_ACCOUNT login(T_MALL_USER_ACCOUNT user) {
+//        MyRoutingDataSource.setKey("1");
+        return userAccountMapper.select_user(user);
+    }
+
+    @Override
+    public T_MALL_USER_ACCOUNT login2(T_MALL_USER_ACCOUNT user) {
+//        MyRoutingDataSource.setKey("1");
         return userAccountMapper.select_user(user);
     }
 

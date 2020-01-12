@@ -1,0 +1,26 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jarvis.gmall.mapper.AttrMapper">
+
+    <resultMap id="select_attr_list_by_map" type="com.jarvis.gmall.dto.OBJECT_T_MALL_ATTR" autoMapping="true">
+        <id property="id" column="attr_id"></id>
+        <collection property="value_list" ofType="com.jarvis.gmall.entity.T_MALL_VALUE" autoMapping="true">
+            <id property="id" column="val_id"></id>
+        </collection>
+    </resultMap>
+
+    <select id="select_attr_list_by" parameterType="int" resultMap="select_attr_list_by_map">
+        SELECT
+            attr.id attr_id, attr.*, val.id val_id, val.*
+        FROM
+            t_mall_attr attr,
+            t_mall_value val
+        WHERE
+            attr.id = val.shxm_id
+            AND attr.flbh2 = #{flbh2}
+    </select>
+
+
+</mapper>

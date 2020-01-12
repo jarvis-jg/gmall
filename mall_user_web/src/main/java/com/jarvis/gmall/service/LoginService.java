@@ -12,5 +12,7 @@ public interface LoginService {
 
     T_MALL_USER_ACCOUNT login(T_MALL_USER_ACCOUNT user);
 
+    T_MALL_USER_ACCOUNT login2(T_MALL_USER_ACCOUNT user);
+
     int save_user(T_MALL_USER_ACCOUNT user);
 }

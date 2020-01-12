@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<context:property-placeholder location="classpath:dbConfig.properties" />
+	<context:component-scan base-package="com.jarvis.gmall.service" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	</context:component-scan>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.jarvis.gmall.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+	</bean>
+
+	<!-- 1 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="mall_sale_dubbo_service"></dubbo:application>
+	<!-- 2 注册中心地址 -->
+	<dubbo:registry protocol="zookeeper" address="192.168.1.21:2181" />
+
+
+	<!-- 3 用dubbo协议在20880端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="20880" />
+
+
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:service id="orderService" interface="com.jarvis.gmall.service.OrderService"
+				   ref="orderServiceImpl" />
+	<dubbo:service id="cartService" interface="com.jarvis.gmall.service.CartService"
+				   ref="cartServiceImpl" />
+	<dubbo:service id="itemService" interface="com.jarvis.gmall.service.ItemService"
+				   ref="itemServiceImpl" />
+	<dubbo:service id="skuService" interface="com.jarvis.gmall.service.SkuService"
+				   ref="skuServiceImpl" />
+	<dubbo:service id="attrService" interface="com.jarvis.gmall.service.AttrService"
+				   ref="attrServiceImpl" />
+
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+ 	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="pointcut" expression="execution(* com.jarvis.gmall.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"></aop:advisor>
+	</aop:config>
+
+	<!-- 注解版 -->
+<!--	<tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>-->
+</beans>

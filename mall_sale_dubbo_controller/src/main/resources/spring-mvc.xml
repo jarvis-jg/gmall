@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+	<!-- 1、包扫描 -->
+	<context:component-scan base-package="com.jarvis.gmall.controller"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+
+	<!-- 2、视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!-- 3、SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+		<property name="maxUploadSize" value="10240000" />
+	</bean>
+
+	<bean id="loginService" class="com.jarvis.gmall.util.MyWsFactoryBean">
+		<property name="url" value="${login_url}"></property>
+		<property name="tClass" value="com.jarvis.gmall.server.LoginServerInf"></property>
+	</bean>
+
+	<bean id="testServer" class="com.jarvis.gmall.util.TestServerFactoryBean">
+		<property name="url" value="${login_test}"></property>
+		<property name="tClass" value="com.jarvis.gmall.server.TestServerInf"></property>
+	</bean>
+
+	<bean id="addressService" class="com.jarvis.gmall.util.AddressServerFactoryBean">
+		<property name="url" value="${address_url}"></property>
+		<property name="tClass" value="com.jarvis.gmall.server.AddressServerInf"></property>
+	</bean>
+
+	<bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://192.168.1.21:61616"></property>
+	</bean>
+
+	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+	</bean>
+
+	<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="queue"></constructor-arg>
+	</bean>
+
+	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="topic"></constructor-arg>
+	</bean>
+
+	<dubbo:application name="mall_sale_dubbo_controller"></dubbo:application>
+
+	<!-- 2 注册中心地址 -->
+	<dubbo:registry protocol="zookeeper" address="192.168.1.21:2181" />
+
+	<dubbo:reference id="orderService" interface="com.jarvis.gmall.service.OrderService"></dubbo:reference>
+	<dubbo:reference id="cartService" interface="com.jarvis.gmall.service.CartService"></dubbo:reference>
+	<dubbo:reference id="itemService" interface="com.jarvis.gmall.service.ItemService"></dubbo:reference>
+	<dubbo:reference id="skuService" interface="com.jarvis.gmall.service.SkuService"></dubbo:reference>
+	<dubbo:reference id="attrService" interface="com.jarvis.gmall.service.AttrService"></dubbo:reference>
+
+	<!-- 4、启动注解 -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+
+</beans>

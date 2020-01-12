@@ -60,6 +60,27 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"></aop:advisor>
 	</aop:config>
 
+
+	<bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://192.168.1.21:61616"></property>
+	</bean>
+
+	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+	</bean>
+
+	<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="queue"></constructor-arg>
+	</bean>
+
+	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="topic"></constructor-arg>
+	</bean>
+
 	<!-- 注解版 -->
 <!--	<tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>-->
 </beans>
